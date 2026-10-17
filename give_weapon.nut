@@ -90,15 +90,15 @@ local function ModelFromDefIndex(index) {
  */
 ::GiveWeapon <- function(player, id, slot = null) {
     if (!(player instanceof CTFPlayer) || !player.IsValid()) {
-        throw format("Invalid player was given");
+        throw "Invalid player was given";
     }
 
     if (!(id in WEAPON_ID_MAP)) {
-        throw format("Invalid weapon id '%s' was given.");
+        throw format("Invalid weapon id '%s' was given.", id);
     }
 
 	if (slot != null && (slot < 0 || slot > 6)) {
-		throw format("Invalid slot '%i' was given. Value should be within [0; 6] range.");
+		throw format("Invalid slot '%i' was given. Value should be within [0; 6] range.", slot);
 	}
 
     local data = WEAPON_ID_MAP[id];
