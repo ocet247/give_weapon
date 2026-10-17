@@ -83,7 +83,8 @@ local function ModelFromDefIndex(index) {
  * @type {function}
  * @param {CTFPlayer} player
  * @param {integer} id
- * @param {integer|null} slot
+ * @param {integer|null} slot Pass `null` to use a default slot for that weapon, pass an integer [0; 6] to force a certain slot.
+ *                            If the requested slot matches with weapon's default slot, the behaviour would be similar to passing `null`.
  * @returns {CEconEntity|[CEconEntity]}
  * @throws {string}
  */
@@ -95,6 +96,10 @@ local function ModelFromDefIndex(index) {
     if (!(id in WEAPON_ID_MAP)) {
         throw format("Invalid weapon id '%s' was given.");
     }
+
+	if (slot != null && (slot < 0 || slot > 6)) {
+		throw format("Invalid slot '%i' was given. Value should be within [0; 6] range.");
+	}
 
     local data = WEAPON_ID_MAP[id];
 
