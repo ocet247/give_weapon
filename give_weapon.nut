@@ -85,7 +85,7 @@ local function ModelFromDefIndex(index) {
  * @param {integer} id
  * @param {integer|null} slot Pass `null` to use a default slot for that weapon, pass an integer [0; 6] to force a certain slot.
  *                            If the requested slot matches with weapon's default slot, the behaviour would be similar to passing `null`.
- * @returns {CEconEntity|[CEconEntity]}
+ * @returns {CEconEntity}
  * @throws {string}
  */
 ::GiveWeapon <- function(player, id, slot = null) {
@@ -204,7 +204,6 @@ local function ModelFromDefIndex(index) {
 		}
 	}
 
-	local dummy;
 	if (slot != weapon.GetSlot()) {
 		local classNames = [
 			"tf_weapon_cannon"
@@ -215,7 +214,7 @@ local function ModelFromDefIndex(index) {
 			"tf_weapon_grapplinghook"
 		];
 
-		dummy = SafeCreateByClassname(classNames[slot]);
+		local dummy = SafeCreateByClassname(classNames[slot]);
 		NetProps.SetPropInt(dummy, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", id);
 		NetProps.SetPropBool(dummy, "m_AttributeManager.m_Item.m_bInitialized", true);
 		dummy.DispatchSpawn();
@@ -248,18 +247,14 @@ local function ModelFromDefIndex(index) {
 	player.ValidateScriptScope();
 	local player_scope = player.GetScriptScope();
 
-	local arms;
 	if (!("arms" in player_scope) || !player_scope.arms.IsValid()) {
-		arms = SafeCreateByClassname("tf_wearable_vm");
+		local arms = SafeCreateByClassname("tf_wearable_vm");
 		arms.SetModelSimple(weapon.GetModelName());
-
 		arms.SetTeam(player.GetTeam());
 		arms.DispatchSpawn();
 
 		player.EquipWearableViewModel(arms);
 		player_scope.arms <- arms;
-	} else {
-		arms = player_scope.arms;
 	}
 
 	local proper_arms_index = GetModelIndex(proper_arms);
