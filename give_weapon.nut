@@ -108,39 +108,39 @@ local function ModelFromDefIndex(index) {
 			return EquipWearable(player, id);
 		case WeaponFlag.AllClassMelee:
 			classname = [
-				"tf_weapon_bat",            // TF_CLASS_SCOUT,
-				"tf_weapon_club",           // TF_CLASS_SNIPER,
-				"tf_weapon_shovel",         // TF_CLASS_SOLDIER,
-				"tf_weapon_bottle",         // TF_CLASS_DEMOMAN,
-				"tf_weapon_bonesaw",        // TF_CLASS_MEDIC,
-				"tf_weapon_fireaxe",        // TF_CLASS_HEAVYWEAPONS,       HWG uses a fireaxe because he doesn't have a default melee weapon of his own; also I am a terrible person
-				"tf_weapon_fireaxe",        // TF_CLASS_PYRO,
-				"tf_weapon_knife",          // TF_CLASS_SPY,
-				"tf_weapon_wrench",         // TF_CLASS_ENGINEER,
+				"tf_weapon_bat",             // TF_CLASS_SCOUT,
+				"tf_weapon_club",            // TF_CLASS_SNIPER,
+				"tf_weapon_shovel",          // TF_CLASS_SOLDIER,
+				"tf_weapon_bottle",          // TF_CLASS_DEMOMAN,
+				"tf_weapon_bonesaw",         // TF_CLASS_MEDIC,
+				"tf_weapon_fireaxe",         // TF_CLASS_HEAVYWEAPONS,       HWG uses a fireaxe because he doesn't have a default melee weapon of his own; also I am a terrible person
+				"tf_weapon_fireaxe",         // TF_CLASS_PYRO,
+				"tf_weapon_knife",           // TF_CLASS_SPY,
+				"tf_weapon_wrench",          // TF_CLASS_ENGINEER,
 			][player.GetPlayerClass() - 1];
 			break;
 		case WeaponFlag.Shotgun:
 			classname = [
-				"tf_weapon_shotgun_soldier",
-				"tf_weapon_shotgun_soldier",
-				"tf_weapon_shotgun_pyro",
-				"tf_weapon_shotgun_soldier",
-				"tf_weapon_shotgun_hwg",
-				"tf_weapon_shotgun_primary",
-				"tf_weapon_shotgun_soldier",
-				"tf_weapon_shotgun_soldier",
-				"tf_weapon_shotgun_soldier",
+				"tf_weapon_shotgun_soldier", // TF_CLASS_SCOUT,
+				"tf_weapon_shotgun_soldier", // TF_CLASS_SNIPER,
+				"tf_weapon_shotgun_soldier", // TF_CLASS_SOLDIER,
+				"tf_weapon_shotgun_soldier", // TF_CLASS_DEMOMAN,
+				"tf_weapon_shotgun_soldier", // TF_CLASS_MEDIC,
+				"tf_weapon_shotgun_hwg",     // TF_CLASS_HEAVYWEAPONS,
+				"tf_weapon_shotgun_pyro",    // TF_CLASS_PYRO,
+				"tf_weapon_shotgun_soldier", // TF_CLASS_SPY,
+				"tf_weapon_shotgun_primary", // TF_CLASS_ENGINEER,
 			][player.GetPlayerClass() - 1];
 			animations = [
-				"soldier",
-				"soldier",
-				"pyro",
-				"soldier",
-				"heavy",
-				"engineer",
-				"soldier",
-				"soldier",
-				"soldier"
+				"soldier",                   // TF_CLASS_SCOUT,
+				"soldier",                   // TF_CLASS_SNIPER,
+				"soldier",                   // TF_CLASS_SOLDIER,
+				"soldier",                   // TF_CLASS_DEMOMAN,
+				"soldier",                   // TF_CLASS_MEDIC,
+				"heavy",                     // TF_CLASS_HEAVYWEAPONS,
+				"pyro",                      // TF_CLASS_PYRO,
+				"soldier",                   // TF_CLASS_SPY,
+				"engineer"                   // TF_CLASS_ENGINEER,
 			][player.GetPlayerClass() - 1];
 			break;
 		case WeaponFlag.Pistol:
@@ -286,7 +286,6 @@ local function ModelFromDefIndex(index) {
 
 // Generated from https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes
 // Keyed by item definition index. 'animations' = class whose viewmodel animations the weapon uses.
-// For items shared between several classes the first class listed on the wiki is used.
 ::WEAPON_ID_MAP <- {
     // ---- allclass melees ---
     [264] = { flag = WeaponFlag.AllClassMelee },
