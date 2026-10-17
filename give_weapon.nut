@@ -284,8 +284,6 @@ local function ModelFromDefIndex(index) {
 	weapon.GetScriptScope().Think <- function() {
 		if (player.GetActiveWeapon() == weapon) {
 			NetProps.GetPropEntity(player, "m_hViewModel").DisableDraw();
-			// It doesn't show up sometimes for whatever reason and this fixes it
-			vm_weapon.EnableDraw();
 		}
 		return -1;
 	}
