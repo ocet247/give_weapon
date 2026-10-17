@@ -274,6 +274,11 @@ local function ModelFromDefIndex(index) {
 	player.EquipWearableViewModel(vm_weapon);
 	NetProps.SetPropEntity(vm_weapon, "m_hWeaponAssociatedWith", weapon);
 
+	// Worst fix ever? Fix viewmodel not appearing for a few seconds during the first draw
+	local current_extra_wearable = NetProps.GetPropEntity(weapon, "m_hExtraWearableViewModel");
+	NetProps.SetPropEntity(weapon, "m_hExtraWearableViewModel", vm_weapon);
+	EntFireByHandle(weapon, "RunScriptCode", "NetProps.SetPropEntity(self, `m_hExtraWearableViewModel`, activator)", 1.0, current_extra_wearable, null);
+
 	weapon.ValidateScriptScope();
 	weapon.GetScriptScope().Think <- function() {
 		if (player.GetActiveWeapon() == weapon) {
