@@ -15,7 +15,7 @@ const OBJ_SENTRYGUN = 2;
 const OBJ_ATTACHMENT_SAPPER = 3;
 
 const TF_CLASS_DEMOMAN = 4;
-const TF_CLASS_ENGINEER = 9;
+const TF_CLASS_SCOUT = 1;
 
 local function SafeCreateByClassname(classname) {
     local entity = Entities.CreateByClassname(classname);
@@ -149,9 +149,9 @@ local function ModelFromDefIndex(index) {
 			][player.GetPlayerClass() - 1];
 			break;
 		case WeaponFlag.Pistol:
-			local is_engineer = player.GetPlayerClass() == TF_CLASS_ENGINEER;
-			classname = is_engineer ? "tf_weapon_pistol" : "tf_weapon_pistol_scout";
-			animations = is_engineer ? "engineer" : "scout";
+			local is_scout = player.GetPlayerClass() == TF_CLASS_SCOUT;
+			classname = is_scout ? "tf_weapon_pistol_scout" : "tf_weapon_pistol";
+			animations = is_scout ? "scout" : "engineer";
 			break;
 		case WeaponFlag.Katana:
 			classname = "tf_weapon_katana";
