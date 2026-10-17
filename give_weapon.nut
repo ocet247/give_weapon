@@ -6,6 +6,8 @@ enum WeaponFlag {
 	Katana,
 }
 
+const MAX_WEAPONS = 8;
+
 const ID_PARACHUTE = 1101;
 const ID_TOOLBOX = 28;
 
@@ -190,7 +192,7 @@ local function ModelFromDefIndex(index) {
 
 
 	slot = slot == null ? weapon.GetSlot() : slot;
-	for (local i = 0; i < 15; i++) {
+	for (local i = 0; i < MAX_WEAPONS; i++) {
 		local held_weapon = NetProps.GetPropEntityArray(player, "m_hMyWeapons", i);
         NetProps.SetPropBool(held_weapon, "m_bForcePurgeFixedupStrings", true);
 		if (!held_weapon) continue;
