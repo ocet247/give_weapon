@@ -97,8 +97,8 @@ local function ModelFromDefIndex(index) {
         throw format("Invalid weapon id '%s' was given.", id);
     }
 
-	if (slot != null && (slot < 0 || slot > 6)) {
-		throw format("Invalid slot '%i' was given. Value should be within [0; 6] range.", slot);
+	if (slot != null && (slot < 0 || slot > 5)) {
+		throw format("Invalid slot '%i' was given. Value should be within [0; 5] range.", slot);
 	}
 
     local data = WEAPON_ID_MAP[id];
