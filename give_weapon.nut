@@ -195,15 +195,15 @@ local function ModelFromDefIndex(index) {
 	for (local i = 0; i < MAX_WEAPONS; i++) {
 		local held_weapon = NetProps.GetPropEntityArray(player, "m_hMyWeapons", i);
         NetProps.SetPropBool(held_weapon, "m_bForcePurgeFixedupStrings", true);
-		if (!held_weapon) continue;
 
-		if (held_weapon.GetSlot() == slot) {
-			if (held_weapon == player.GetActiveWeapon()) {
-				EntFireByHandle(player, "RunScriptCode", "self.Weapon_Switch(activator)", 0.0, weapon, null);
-			}
-			held_weapon.Kill();
-			break;
+		if (held_weapon == null || held_weapon.GetSlot() != slot)
+			continue;
+
+		if (held_weapon == player.GetActiveWeapon()) {
+			EntFireByHandle(player, "RunScriptCode", "self.Weapon_Switch(activator)", 0.0, weapon, null);
 		}
+		held_weapon.Kill();
+		break;
 	}
 
 	if (slot != weapon.GetSlot()) {
