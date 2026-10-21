@@ -207,7 +207,7 @@ local function ModelFromDefIndex(index) {
 	}
 
 	if (slot != weapon.GetSlot()) {
-		local classNames = [
+		local classnames = [
 			"tf_weapon_cannon"
 			"tf_weapon_smg"
 			"tf_weapon_bat"
@@ -216,7 +216,7 @@ local function ModelFromDefIndex(index) {
 			"tf_weapon_grapplinghook"
 		];
 
-		local dummy = SafeCreateByClassname(classNames[slot]);
+		local dummy = SafeCreateByClassname(classnames[slot]);
 		NetProps.SetPropInt(dummy, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", id);
 		NetProps.SetPropBool(dummy, "m_AttributeManager.m_Item.m_bInitialized", true);
 		dummy.DispatchSpawn();
