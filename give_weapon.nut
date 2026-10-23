@@ -32,8 +32,8 @@ local function GetPlayerUserID(player) {
 
 local function ModelFromDefIndex(index) {
     local wearable = SafeCreateByClassname("tf_wearable");
-    NetProps.SetPropInt(wearable, "m_AttributeManager.m_Item.m_bInitialized", 1);
     NetProps.SetPropInt(wearable, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", index);
+    NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true);
     wearable.DispatchSpawn();
 
 	local model = wearable.GetModelName();
