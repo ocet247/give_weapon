@@ -202,6 +202,17 @@ local function ModelFromDefIndex(index) {
 		if (held_weapon == player.GetActiveWeapon()) {
 			EntFireByHandle(player, "RunScriptCode", "self.Weapon_Switch(activator)", 0.0, weapon, null);
 		}
+
+		local wearable = NetProps.GetPropEntity(held_weapon, "m_hExtraWearable");
+		if (wearable != null) {
+			wearable.Kill();
+		}
+
+		local wearable_viewmodel = NetProps.GetPropEntity(held_weapon, "m_hExtraWearableViewModel");
+		if (wearable_viewmodel != null) {
+			wearable_viewmodel.Kill();
+		}
+
 		held_weapon.Kill();
 		break;
 	}
