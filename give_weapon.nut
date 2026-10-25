@@ -230,23 +230,10 @@ local function ModelFromDefIndex(index) {
 		local dummy = SafeCreateByClassname(classnames[slot]);
 		NetProps.SetPropInt(dummy, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", id);
 		NetProps.SetPropBool(dummy, "m_AttributeManager.m_Item.m_bInitialized", true);
+		NetProps.SetPropString(dummy, "m_iClassname", classname);
 		dummy.DispatchSpawn();
 		player.Weapon_Equip(dummy);
-
-
-		dummy.ValidateScriptScope();
-		dummy.GetScriptScope().Think <- function() {
-			local active = player.GetActiveWeapon();
-			if (active == dummy) {
-				NetProps.SetPropInt(dummy, "m_iSubType", -1);
-				player.Weapon_Switch(weapon);
-			} else if (active != weapon) {
-				NetProps.SetPropInt(dummy, "m_iSubType", 0);
-			}
-			return -1;
-		}
-
-		AddThinkToEnt(dummy, "Think");
+		NetProps.SetPropString(dummy, "m_iClassname", "");
 	}
 
 	player.AddCustomAttribute("disable weapon switch", 1, -1);
