@@ -3,5 +3,5 @@
 * Consumables will not work on unordinary classes since game wouldn't be able to find a proper taunt to trigger.
 
 # Custom slot notes
-* Using custom weapon slots might not work well on high ping since dummy weapons need to detect the moment player switches to them and VScript is serverside only, therefore nothing is smoothed out.
+* Pressing a custom slot after it's already been selected can hide the viewmodel model due to the clientside prediction, this is only visual.
 * A couple of bugs is present if quick weapon switching is disabled: `hud_fastswitch 0`.
