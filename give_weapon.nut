@@ -237,7 +237,7 @@ local function ModelFromDefIndex(index) {
 		// Make the dummy fail checks that allow it to be selected, this way only the original weapon could be found
 		// This can either be done by changing classname to anything other than original's weapon classname
 		// or changing `m_iSubType` to something other than 0
-		NetProps.SetPropString(dummy, "m_iClassname", "");
+		NetProps.SetPropInt(dummy, "m_iSubType", -1);
 	}
 
 	player.AddCustomAttribute("disable weapon switch", 1, 0.0);
