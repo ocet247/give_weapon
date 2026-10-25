@@ -230,13 +230,17 @@ local function ModelFromDefIndex(index) {
 		local dummy = SafeCreateByClassname(classnames[slot]);
 		NetProps.SetPropInt(dummy, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", id);
 		NetProps.SetPropBool(dummy, "m_AttributeManager.m_Item.m_bInitialized", true);
+		// Change dummy's classname so the game calls a search for the original weapon's `classname` when pressing a slot
 		NetProps.SetPropString(dummy, "m_iClassname", classname);
 		dummy.DispatchSpawn();
 		player.Weapon_Equip(dummy);
+		// Make the dummy fail checks that allow it to be selected, this way only the original weapon could be found
+		// This can either be done by changing classname to anything other than original's weapon classname
+		// or changing `m_iSubType` to something other than 0
 		NetProps.SetPropString(dummy, "m_iClassname", "");
 	}
 
-	player.AddCustomAttribute("disable weapon switch", 1, -1);
+	player.AddCustomAttribute("disable weapon switch", 1, 0.0);
 	player.Weapon_Equip(weapon);
 	player.RemoveCustomAttribute("disable weapon switch");
 
