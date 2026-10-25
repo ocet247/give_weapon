@@ -233,10 +233,15 @@ local function ModelFromDefIndex(index) {
 		dummy.DispatchSpawn();
 		player.Weapon_Equip(dummy);
 
+
 		dummy.ValidateScriptScope();
 		dummy.GetScriptScope().Think <- function() {
-			if (player.GetActiveWeapon() == dummy) {
+			local active = player.GetActiveWeapon();
+			if (active == dummy) {
+				NetProps.SetPropInt(dummy, "m_iSubType", -1);
 				player.Weapon_Switch(weapon);
+			} else if (active != weapon) {
+				NetProps.SetPropInt(dummy, "m_iSubType", 0);
 			}
 			return -1;
 		}
